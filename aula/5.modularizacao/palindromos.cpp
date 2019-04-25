@@ -1,65 +1,54 @@
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<cstring>
+
 using namespace std;
 
-void maiorMenorPalindromo(string palavra){
-	string maior;
-	string menor;
+void maiorMenorPalindromo(char *palavra){
+	char maior[200] = "";
+	char menor[200];
 
-	int TamanhoMaior;
-	int TamanhoMenor = 999;
+	int TamanhoPalavra = strlen(palavra);
 
-	int tamanho = palavra.length();
-
-	if (tamanho < TamanhoMenor){
-		menor = palavra;
-	} else {
-		maior = palavra;
-	}
-
-	cout << menor << endl;
-	cout << maior << endl;
-
-}
-
-void palindromo(string palavra){
-	bool isPalindromo = true;
-	int posicaoInversa;
-
-	int i = palavra.length() - 1;
-	while (i > 0){
-		posicaoInversa = palavra.length() - i - 1;
-
-		if (palavra.substr(i, 1) != palavra.substr(posicaoInversa, 1)){
-			isPalindromo = false;
-		}
-
-		i--;
-	}
-
-	if(isPalindromo){
-		maiorMenorPalindromo(palavra);
-	} else {
+	if (TamanhoPalavra > strlen(maior)){
+		cout << palavra << endl;
+	} else if (TamanhoPalavra < strlen(menor)){
 		cout << palavra << endl;
 	}
 
 }
 
-int main(){
-
-	int quantidade;
-	string palavra;
-
-	cin >> quantidade;
-	
+bool palindromo(char *palavra) {
+	bool ePalindromo = false;	
 	int i = 0;
-	while (i < quantidade){
-		cin >> palavra;
+    int j = strlen(palavra);
+    while (i >= j){
+    	if(palavra[i] != palavra[j]){
+    		cout << palavra << endl;
+        	ePalindromo = false;
+    	} else {
+    		ePalindromo = true;
+    	}
+    }
+    return ePalindromo;
+    cout << ePalindromo << endl;
+ }
 
-		palindromo(palavra);
+int main() {
+    char palavra[200];
+    int quantidade;
+    cin >> quantidade;
 
-		i++;
-	}
+    int i = 0;
+    while (i < quantidade){
+        cin >> palavra;
 
-	return 0;
-}
+        palindromo(palavra);
+
+        if(palindromo(palavra)){
+        	maiorMenorPalindromo(palavra);
+        }
+        i++;
+    }
+
+    return 0;
+} 
