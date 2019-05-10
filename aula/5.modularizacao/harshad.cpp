@@ -2,28 +2,35 @@
 #include <cmath>
 using namespace std;
 
-int somaDigitos(int numero, int &soma){
+int somatorio(int numero){
+	int valor = numero;
+	int digitos = 0;
 
-	while (numero != 0){
-		soma = soma + numero % 10;
-		numero = numero / 10;
+	if (numero == 0){
+		digitos = 1;
+	} else {
+		while (valor != 0){
+			digitos = digitos + 1;
+			valor = valor/10;
+		}
 	}
 
-	return soma;
+	int somatorio = 0;
+	int i = 1;
+	while (i <= digitos){
+		somatorio = somatorio + (numero % pow(10, i));
+		i++;
+	}
+
 }
 
 int main(){
-	bool valido = false;
-	int soma = 0;
+	
 	int numero;
 
 	cin >> numero;
 
-	somaDigitos(numero, soma);
-
-	if (numero % soma == 0) valido = true;
-
-	cout << valido << endl;  
+	cout << somatorio(numero) << endl;
 
 	return 0;
 }
