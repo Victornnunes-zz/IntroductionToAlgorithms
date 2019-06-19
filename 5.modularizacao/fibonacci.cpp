@@ -5,7 +5,6 @@ void fibonacci(int numero){
 	int fib0 = 0;
 	int fib1 = 1;
 	int fib;
-
 	if (numero == 0){
 		cout << fib0 << " ";
 	} else if (numero == 1){
@@ -26,14 +25,9 @@ void fibonacci(int numero){
 		}
 	}
 }
-
 int main(){
-
 	int numero;
-
 	cin >> numero;
-
 	fibonacci(numero);
-
 	return 0;
 }
