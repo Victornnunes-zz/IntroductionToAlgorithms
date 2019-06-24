@@ -1,0 +1,23 @@
+4
+8 O V
+5 E P
+4 P P
+0 N P
+5
+7 O V
+9 P V
+3 O P
+5 O P
+5 C V
+3
+6 O V
+2 O P
+4 P P
+3
+4 O P
+0 N P
+3 O V
+3
+K C P
+Q C P
+K O V
