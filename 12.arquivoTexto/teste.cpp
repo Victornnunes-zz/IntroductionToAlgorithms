@@ -1,133 +1,32 @@
-#include <iostream>
-#include <fstream> // ofstream e ifstream
-using namespace std;
-
-class Pessoa
-{
-private:
-	string nome;
-	int idade;
-
-public:
-	string& getNome()
-	{
-		return nome;
+int buscaBinaria(int vetor[], int tamanho, int chave){
+	int inicio = 0;
+	int final = tamanho - 1;
+	int meio;
+	while (inicio <= final){
+		meio = (inicio + final) / 2;
+		if (vetor[meio] == busca){
+			return meio;
+		} else {
+			if (busca > vetor[meio]){
+				inicio = meio + 1;
+			} else {
+				final = meio - 1;
+			}
+		}
 	}
-
-	int getIdade()
-	{
-		return idade;
-	}
-
-	void setNome(string& nome)
-	{
-		this->nome = nome;
-	}
-
-	void setIdade(int idade)
-	{
-		this->idade = idade;
-	}
-
-	// sobrecarga do operador de inserção de dados <<
-	// ostream = output stream
-	friend ostream& operator<<(ostream& os, const Pessoa& p)
-	{
-		// escrever cada membro
-		os << "\n" << p.nome << "\n";
-		os << p.idade;
-		return os;
-	}
-
-	// sobrecarga do operador de extração de dados >>
-	// istream = input stream
-	friend istream& operator>>(istream& is, Pessoa& p)
-	{
-		// ler cada membro
-		is >> p.nome >> p.idade;
-		return is;
-	}
-};
-
-char menu()
-{
-	char resp;
-
-	cout << "Digite 1 para inserir pessoas\n";
-	cout << "Digite 2 para listar as pessoas\n";
-	cout << "Digite 0 para sair\n";
-	cout << "Opcao: ";
-	cin >> resp;
-	return resp;
+	return -1;
 }
 
-int main(int argc, char *argv[])
-{
-	char resp;
-
-	while(true)
-	{
-		resp = menu();
-		if(resp == '1')
-		{
-			Pessoa pessoa;
-			string nome;
-			int idade;
-
-			// app = append (adiciona ao final do arquivo)
-			ofstream ofs("arquivo.txt", fstream::app);
-
-			cout << "\nDigite o nome da pessoa: ";
-			cin >> nome;
-			cout << "Digite a idade da pessoa: ";
-			cin >> idade;
-			cout << endl;
-
-			// seta o nome e a idade
-			pessoa.setNome(nome);
-			pessoa.setIdade(idade);
-
-			ofs << pessoa;
-
-			ofs.close();
-		}
-		else if(resp == '2')
-		{
-			Pessoa p;
-			ifstream ifs("arquivo.txt");
-
-			cout << "\nListando pessoas...\n\n";
-
-			// verifca se o arquivo existe e se é possível ler
-			if(ifs.good())
-			{
-				// eof = end of file
-				// enquanto NÃO chegar ao final do arquivo
-				while(!ifs.eof())
-				{
-					ifs >> p; // faz a extração dos dados
-
-					// mostrar os dados
-					cout << "Nome: " << p.getNome() << "\n";
-					cout << "Idade: " << p.getIdade() << "\n\n";
-				}
-				ifs.close();
-			}
-			else
-			{
-				cout << "Falha ao abrir o arquivo!\n\n";
-			}
-		}
-		else if(resp == '0')
-		{
-			cout << "\nBye! Visite: www.geeksbr.com ;-)\n";
-			break;
-		}
-		else
-		{
-			cout << "\nOpcao invalida. Tente novamente...\n\n";
-		}
+int main() {
+	int vetor[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	int tamanho = 10;
+	int chave;
+	cin >> chave;
+	int busca = buscaBinaria(vetor, tamanho, chave);
+	if (busca == -1){
+		cout << "Não encontrado" << endl;
+	} else {
+		cout << busca << endl;
 	}
-
 	return 0;
 }
